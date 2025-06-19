@@ -62,7 +62,7 @@ const Index = () => {
       period: "Jan 2025 – May 2025",
       type: "Contract",
       achievements: [
-        "Engineered custom ERC-721 NFT smart contracts on Hedera Testnet",
+        "Engineered custom ERC-721 NFT smart contracts on Hedera",
         "Integrated IPFS for decentralized metadata storage",
         "Developed robust backend using NestJS for blockchain integration"
       ]
