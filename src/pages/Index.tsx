@@ -371,7 +371,7 @@ const Index = () => {
             I'm always open to discussing new opportunities and exciting projects. 
             Let's create something amazing together.
           </p>
-          <div className="flex justify-center space-x-6">
+          <div className="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6">
             <a
               href="mailto:omelihunna@gmail.com"
               className="inline-flex items-center space-x-2 px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors text-lg"
