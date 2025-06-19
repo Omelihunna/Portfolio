@@ -252,7 +252,9 @@ const Index = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="w-80 h-80 bg-gradient-to-br from-black to-gray-600 dark:from-white dark:to-gray-400 rounded-full mx-auto opacity-10"></div>
+              <div className="">
+                <img className='w-96 h-96 bg-gradient-to-br from-black to-gray-600 dark:from-white dark:to-gray-400 rounded-full mx-auto opacity-100' src="profile.jpg" alt="" />
+              </div>
             </div>
           </div>
         </div>
