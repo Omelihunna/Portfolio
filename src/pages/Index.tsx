@@ -201,7 +201,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-transparent text-black dark:text-white relative">
+      <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-transparent text-black dark:text-white relative px-4">
         <div ref={heroRef} className={`max-w-6xl mx-auto px-8 text-center glass glass-dark shadow-xl py-24 animate-fade-in ${heroInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
           <h1 className="text-6xl font-bold mb-8 animate-scale-in">
             Full-Stack
@@ -247,7 +247,7 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-transparent">
+      <section id="about" className=" px-4 py-24 bg-transparent">
         <div ref={aboutRef} className={`max-w-6xl mx-auto px-8 glass glass-dark shadow-xl py-16 ${aboutInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
@@ -278,8 +278,8 @@ const Index = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-24 bg-transparent">
-        <div ref={experienceRef} className={`max-w-6xl mx-auto px-8 glass glass-dark shadow-xl py-16 ${experienceInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
+      <section id="experience" className="py-24 px-4 md:px-8 bg-transparent">
+        <div ref={experienceRef} className={`max-w-6xl mx-auto glass glass-dark shadow-xl py-16 px-8 ${experienceInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
               Experience
@@ -288,7 +288,7 @@ const Index = () => {
           </div>
           <div className="space-y-12">
             {experiences.map((exp, index) => (
-              <div key={index} className="relative pl-10 border-l-2 border-white/20">
+              <div key={index} className="relative pl-10 border-l-2 border-white/20 mb-8">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-white/80 rounded-full"></div>
                 <div className="mb-6">
                   <div className="flex flex-wrap items-center gap-4 mb-3">
@@ -318,8 +318,8 @@ const Index = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-24 bg-transparent">
-        <div ref={skillsRef} className={`max-w-6xl mx-auto px-8 glass glass-dark shadow-xl py-16 ${skillsInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
+      <section id="skills" className="py-24 px-4 md:px-8 bg-transparent">
+        <div ref={skillsRef} className={`max-w-6xl mx-auto glass glass-dark shadow-xl py-16 px-8 ${skillsInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
               Technical Skills
@@ -328,7 +328,7 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
             {skills.map((skill, index) => (
-              <div key={index} className="text-center hover:scale-105 hover:shadow-2xl transition-all duration-300 glass p-8" data-cursor-light>
+              <div key={index} className="text-center hover:scale-105 hover:shadow-2xl transition-all duration-300 glass p-8 mb-6" data-cursor-light>
                 <div className="w-16 h-16 bg-white/80 text-black rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
                   {skill.icon}
                 </div>
@@ -349,8 +349,8 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 bg-transparent">
-        <div ref={projectsRef} className={`max-w-6xl mx-auto px-8 glass glass-dark shadow-xl py-16 ${projectsInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
+      <section id="projects" className="py-24 px-4 md:px-8 bg-transparent">
+        <div ref={projectsRef} className={`max-w-6xl mx-auto glass glass-dark shadow-xl py-16 px-8 ${projectsInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
               Featured Projects
@@ -359,7 +359,7 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-10">
             {projects.map((project, index) => (
-              <div key={index} className="group hover:scale-105 hover:shadow-2xl transition-all duration-300 glass p-8" data-cursor-light>
+              <div key={index} className="group hover:scale-105 hover:shadow-2xl transition-all duration-300 glass p-8 mb-6" data-cursor-light>
                 {/* <div className="bg-white/10 p-8 rounded-lg h-full transition-colors"> */}
                   <Link to={project.link} className="w-12 h-12 bg-white/80 text-black rounded-lg flex items-center justify-center mb-8 shadow-lg hover:scale-110 transition-transform" data-cursor-light>
                     <ExternalLink className="w-6 h-6" />
@@ -378,7 +378,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-transparent">
+      <section id="contact" className="px-4 py-24 bg-transparent">
         <div ref={contactRef} className={`max-w-6xl mx-auto px-8 glass glass-dark shadow-xl text-center py-16 ${contactInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
             Let's Work Together
