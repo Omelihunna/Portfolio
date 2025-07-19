@@ -1,8 +1,27 @@
 
-import { useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Moon, Sun, Github, Mail, ExternalLink, Code, Database, Cloud, Smartphone } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+
+function useSectionInView() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setInView(true);
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+  return [ref, inView] as const;
+}
 
 const Index = () => {
   const [isDark, setIsDark] = useState(false);
@@ -146,6 +165,13 @@ const Index = () => {
     }
   ];
 
+  const [heroRef, heroInView] = useSectionInView();
+  const [aboutRef, aboutInView] = useSectionInView();
+  const [experienceRef, experienceInView] = useSectionInView();
+  const [skillsRef, skillsInView] = useSectionInView();
+  const [projectsRef, projectsInView] = useSectionInView();
+  const [contactRef, contactInView] = useSectionInView();
+
   return (
     <div className={`min-h-screen w-full transition-colors duration-300 ${isDark ? 'dark' : ''}`}>
       {/* Navigation */}
@@ -170,90 +196,81 @@ const Index = () => {
                 </button>
               ))}
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsDark(!isDark)}
-              className="p-2"
-            >
-              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </Button>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-white dark:bg-black text-black dark:text-white">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <div className="animate-fade-in">
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 animate-scale-in">
-              Full-Stack
-              <br />
-              <span className="text-gray-400">Developer</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-              Crafting scalable web applications and mobile solutions with modern technologies
-            </p>
-            <div className="flex justify-center space-x-6">
-              <a
-                href="mailto:omelihunna@gmail.com"
-                className="inline-flex items-center space-x-2 px-6 py-3 bg-black dark:bg-white text-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                <span>Get in touch</span>
-              </a>
-              <a
-                href="https://github.com/Omelihunna"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 px-6 py-3 border border-black dark:border-white text-black dark:text-white rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
-              >
-                <Github className="w-4 h-4" />
-                <span>GitHub</span>
-              </a>
-            </div>
+      <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-transparent text-black dark:text-white relative">
+        <div ref={heroRef} className={`max-w-6xl mx-auto px-8 text-center glass glass-dark shadow-xl py-24 animate-fade-in ${heroInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
+          <h1 className="text-6xl font-bold mb-8 animate-scale-in">
+            Full-Stack
+            <br />
+            <span className="text-gray-400">Developer</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
+            Crafting scalable web applications and mobile solutions with modern technologies
+          </p>
+          <div className="flex justify-center space-x-6">
+            <a
+              href="mailto:omelihunna@gmail.com"
+              className="inline-flex items-center space-x-2 px-8 py-4 bg-black text-white rounded-full hover:scale-105 hover:shadow-2xl transition-all duration-300 relative group cursor-pointer glass border border-white/10 focus:outline-none focus:ring-2 focus:ring-white"
+              data-cursor-light
+              style={{ boxShadow: '0 2px 16px 0 rgba(0,0,0,0.18)' }}
+            >
+              <Mail className="w-4 h-4" />
+              <span>Get in touch</span>
+            </a>
+            <a
+              href="https://github.com/Omelihunna"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 px-8 py-4 bg-black text-white rounded-full border border-black hover:bg-white hover:text-black hover:scale-105 hover:shadow-2xl transition-all duration-300 relative group cursor-pointer glass focus:outline-none focus:ring-2 focus:ring-black"
+              data-cursor-light
+              style={{ boxShadow: '0 2px 16px 0 rgba(0,0,0,0.10)' }}
+            >
+              <Github className="w-4 h-4" />
+              <span>GitHub</span>
+            </a>
           </div>
+        </div>
+        {/* Scroll Indicator */}
+        <div className="absolute left-1/2 bottom-15 transform -translate-x-1/2 flex flex-col items-center select-none" aria-hidden="true">
+          <div className="w-10 h-10 flex items-center justify-center animate-bounce">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 8V24" stroke="#fff" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M8 16L16 24L24 16" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <span className="text-xs text-white/80 mt-2">Scroll</span>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="about" className="py-24 bg-transparent">
+        <div ref={aboutRef} className={`max-w-6xl mx-auto px-8 glass glass-dark shadow-xl py-16 ${aboutInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
               About Me
             </h2>
-            <div className="w-20 h-1 bg-black dark:bg-white mx-auto"></div>
+            <div className="w-20 h-1 bg-white mx-auto"></div>
           </div>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+          <div className="flex text-center justify-center gap-16 items-center">
+            <div className='max-w-[600px]'>
+              <p className="text-lg text-gray-200 dark:text-gray-300 mb-8">
                 I'm a passionate full-stack developer with expertise in modern web and mobile technologies. 
                 With a background in Electrical & Electronics Engineering and extensive experience in software development, 
                 I specialize in building scalable applications that solve real-world problems.
               </p>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+              <p className="text-lg text-gray-200 dark:text-gray-300 mb-8">
                 My journey spans from traditional web development to cutting-edge blockchain applications, 
                 always focusing on clean code, user experience, and innovative solutions.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <span className="px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full text-sm">
-                  Bachelor's in EE Engineering (2024)
-                </span>
-                <span className="px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full text-sm">
-                  Frontend Developer
-                </span>
-                <span className="px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full text-sm">
-                  Blockchain Developer
-                </span>
-                <span className="px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full text-sm">
-                  Backend Developer
-                </span>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="">
-                <img className='w-96 h-96 bg-gradient-to-br from-black to-gray-600 dark:from-white dark:to-gray-400 rounded-full mx-auto opacity-100' src="profile.jpg" alt="" />
+              <div className="flex justify-center flex-wrap gap-4">
+                <span className="px-5 py-2 bg-black/80 text-white rounded-full text-sm glass">Bachelor's in EE Engineering (2024)</span>
+                <span className="px-5 py-2 bg-black/80 text-white rounded-full text-sm glass">Frontend Developer</span>
+                <span className="px-5 py-2 bg-black/80 text-white rounded-full text-sm glass">Blockchain Developer</span>
+                <span className="px-5 py-2 bg-black/80 text-white rounded-full text-sm glass">Backend Developer</span>
               </div>
             </div>
           </div>
@@ -261,34 +278,34 @@ const Index = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 bg-white dark:bg-black">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="experience" className="py-24 bg-transparent">
+        <div ref={experienceRef} className={`max-w-6xl mx-auto px-8 glass glass-dark shadow-xl py-16 ${experienceInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
               Experience
             </h2>
-            <div className="w-20 h-1 bg-black dark:bg-white mx-auto"></div>
+            <div className="w-20 h-1 bg-white mx-auto"></div>
           </div>
           <div className="space-y-12">
             {experiences.map((exp, index) => (
-              <div key={index} className="relative pl-8 border-l-2 border-gray-200 dark:border-gray-800">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-black dark:bg-white rounded-full"></div>
-                <div className="mb-4">
-                  <div className="flex flex-wrap items-center gap-4 mb-2">
-                    <h3 className="text-2xl font-bold text-black dark:text-white">
+              <div key={index} className="relative pl-10 border-l-2 border-white/20">
+                <div className="absolute -left-2 top-0 w-4 h-4 bg-white/80 rounded-full"></div>
+                <div className="mb-6">
+                  <div className="flex flex-wrap items-center gap-4 mb-3">
+                    <h3 className="text-2xl font-bold text-white">
                       {exp.title}
                     </h3>
-                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm">
+                    <span className="px-4 py-1 bg-white/10 text-white rounded-full text-sm glass">
                       {exp.type}
                     </span>
                   </div>
-                  <p className="text-lg text-gray-600 dark:text-gray-400 mb-2">
-                    {exp.company} • {exp.period}
+                  <p className="text-lg text-gray-200 mb-3">
+                    {exp.company}  {exp.period}
                   </p>
                   <ul className="space-y-2">
                     {exp.achievements.map((achievement, i) => (
-                      <li key={i} className="text-gray-700 dark:text-gray-300 flex items-start">
-                        <span className="w-2 h-2 bg-black dark:bg-white rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      <li key={i} className="text-gray-200 flex items-start">
+                        <span className="w-2 h-2 bg-white rounded-full mt-2 mr-3 flex-shrink-0"></span>
                         {achievement}
                       </li>
                     ))}
@@ -301,26 +318,26 @@ const Index = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="skills" className="py-24 bg-transparent">
+        <div ref={skillsRef} className={`max-w-6xl mx-auto px-8 glass glass-dark shadow-xl py-16 ${skillsInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
               Technical Skills
             </h2>
-            <div className="w-20 h-1 bg-black dark:bg-white mx-auto"></div>
+            <div className="w-20 h-1 bg-white mx-auto"></div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
             {skills.map((skill, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-black dark:bg-white text-white dark:text-black rounded-full flex items-center justify-center mx-auto mb-4">
+              <div key={index} className="text-center hover:scale-105 hover:shadow-2xl transition-all duration-300 glass p-8" data-cursor-light>
+                <div className="w-16 h-16 bg-white/80 text-black rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
                   {skill.icon}
                 </div>
-                <h3 className="text-lg font-bold text-black dark:text-white mb-4">
+                <h3 className="text-lg font-bold text-white mb-4">
                   {skill.category}
                 </h3>
                 <div className="space-y-2">
                   {skill.items.map((item, i) => (
-                    <span key={i} className="block text-gray-600 dark:text-gray-400 text-sm">
+                    <span key={i} className="block text-gray-200 text-sm">
                       {item}
                     </span>
                   ))}
@@ -332,28 +349,28 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-white dark:bg-black">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="projects" className="py-24 bg-transparent">
+        <div ref={projectsRef} className={`max-w-6xl mx-auto px-8 glass glass-dark shadow-xl py-16 ${projectsInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
               Featured Projects
             </h2>
-            <div className="w-20 h-1 bg-black dark:bg-white mx-auto"></div>
+            <div className="w-20 h-1 bg-white mx-auto"></div>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10">
             {projects.map((project, index) => (
-              <div key={index} className="group">
-                <div className="bg-gray-50 dark:bg-gray-900 p-8 rounded-lg h-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                  <Link to={project.link} className="w-12 h-12 bg-black dark:bg-white text-white dark:text-black rounded-lg flex items-center justify-center mb-6">
+              <div key={index} className="group hover:scale-105 hover:shadow-2xl transition-all duration-300 glass p-8" data-cursor-light>
+                {/* <div className="bg-white/10 p-8 rounded-lg h-full transition-colors"> */}
+                  <Link to={project.link} className="w-12 h-12 bg-white/80 text-black rounded-lg flex items-center justify-center mb-8 shadow-lg hover:scale-110 transition-transform" data-cursor-light>
                     <ExternalLink className="w-6 h-6" />
                   </Link>
-                  <h3 className="text-xl font-bold text-black dark:text-white mb-4">
+                  <h3 className="text-xl font-bold text-white mb-4">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-gray-200">
                     {project.description}
                   </p>
-                </div>
+                {/* </div> */}
               </div>
             ))}
           </div>
@@ -361,20 +378,21 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6">
+      <section id="contact" className="py-24 bg-transparent">
+        <div ref={contactRef} className={`max-w-6xl mx-auto px-8 glass glass-dark shadow-xl text-center py-16 ${contactInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
             Let's Work Together
           </h2>
-          <div className="w-20 h-1 bg-black dark:bg-white mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-white mx-auto mb-10"></div>
+          <p className="text-xl text-gray-200 mb-16 max-w-2xl mx-auto">
             I'm always open to discussing new opportunities and exciting projects. 
             Let's create something amazing together.
           </p>
-          <div className="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6">
+          <div className="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-8">
             <a
               href="mailto:omelihunna@gmail.com"
-              className="inline-flex items-center space-x-2 px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors text-lg"
+              className="inline-flex items-center space-x-2 px-10 py-5 bg-black text-white rounded-full hover:scale-105 hover:shadow-2xl transition-all duration-300 glass text-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-white"
+              data-cursor-light
             >
               <Mail className="w-5 h-5" />
               <span>omelihunna@gmail.com</span>
@@ -383,20 +401,31 @@ const Index = () => {
               href="https://github.com/Omelihunna"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-8 py-4 border border-black dark:border-white text-black dark:text-white rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors text-lg"
+              className="inline-flex items-center space-x-2 px-10 py-5 bg-black text-white rounded-full border border-white/60 hover:bg-white hover:text-black hover:scale-105 hover:shadow-2xl transition-all duration-300 glass text-lg focus:outline-none focus:ring-2 focus:ring-white"
+              data-cursor-light
             >
               <Github className="w-5 h-5" />
               <span>GitHub</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/omelihunna/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 px-10 py-5 bg-black text-white rounded-full border border-white/60 hover:bg-white hover:text-black hover:scale-105 hover:shadow-2xl transition-all duration-300 glass text-lg focus:outline-none focus:ring-2 focus:ring-white"
+              data-cursor-light
+            >
+              <Linkedin className="w-5 h-5" />
+              <span>LinkedIn</span>
             </a>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 bg-white dark:bg-black border-t border-gray-200 dark:border-gray-800">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-gray-600 dark:text-gray-400">
-            © 2025 Iheanacho Omelihunna. Built with React & Tailwind CSS.
+      <footer className="py-10 bg-transparent border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-8 text-center">
+          <p className="text-gray-400">
+             © 2025 Iheanacho Omelihunna. Built with React & Tailwind CSS.
           </p>
         </div>
       </footer>
