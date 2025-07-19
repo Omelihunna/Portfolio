@@ -65,6 +65,17 @@ const Index = () => {
 
    const experiences = [
     {
+      title: "Full-Stack Developer",
+      company: "Thiscreet",
+      period: "June 2024 – Present",
+      type: "Full-time",
+      achievements: [
+        "Developed cross-platform mobile apps resulting in 30% increase in user engagement",
+        "Implemented secure authentication using OAuth2.0 and JWT",
+        "Built scalable apps for both Android and iOS platforms"
+      ]
+    },
+    {
       title: "Software Engineer",
       company: "Descriptomizer",
       period: "Mar 2025 - May 2025",
@@ -84,17 +95,6 @@ const Index = () => {
         "Engineered custom ERC-721 NFT smart contracts on Hedera",
         "Integrated IPFS for decentralized metadata storage",
         "Developed robust backend using NestJS for blockchain integration"
-      ]
-    },
-    {
-      title: "Full-Stack Developer",
-      company: "THISCREET",
-      period: "June 2024 – Present",
-      type: "Full-time",
-      achievements: [
-        "Developed cross-platform mobile apps resulting in 30% increase in user engagement",
-        "Implemented secure authentication using OAuth2.0 and JWT",
-        "Built scalable apps for both Android and iOS platforms"
       ]
     },
     {
@@ -214,7 +214,7 @@ const Index = () => {
           <div className="flex justify-center space-x-6">
             <a
               href="mailto:omelihunna@gmail.com"
-              className="inline-flex items-center space-x-2 px-8 py-4 bg-black text-white rounded-full hover:scale-105 hover:shadow-2xl transition-all duration-300 relative group cursor-pointer glass border border-white/10 focus:outline-none focus:ring-2 focus:ring-white"
+              className="inline-flex items-center space-x-2 px-8 py-4 bg-black text-white rounded-full hover:scale-105 hover:bg-white hover:text-black  hover:shadow-2xl transition-all duration-300 relative group cursor-pointer glass border border-white/10 focus:outline-none focus:ring-2 focus:ring-black"
               data-cursor-light
               style={{ boxShadow: '0 2px 16px 0 rgba(0,0,0,0.18)' }}
             >
