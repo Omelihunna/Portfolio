@@ -175,7 +175,7 @@ const Index = () => {
   return (
     <div className={`min-h-screen w-full transition-colors duration-300`}>
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="font-bold text-xl text-black dark:text-white">
             IHEANACHO OMELIHUNNA
