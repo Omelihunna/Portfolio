@@ -1,8 +1,8 @@
 
 import { useRef, useState, useEffect } from 'react';
-import { Moon, Sun, Github, Mail, ExternalLink, Code, Database, Cloud, Smartphone } from 'lucide-react';
+import { Github, Mail, ExternalLink, Code, Database, Cloud, Smartphone } from 'lucide-react';
 import { Linkedin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+// import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 function useSectionInView() {
@@ -24,16 +24,16 @@ function useSectionInView() {
 }
 
 const Index = () => {
-  const [isDark, setIsDark] = useState(false);
+  // const [isDark, setIsDark] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDark]);
+  // useEffect(() => {
+  //   if (isDark) {
+  //     document.documentElement.classList.add('dark');
+  //   } else {
+  //     document.documentElement.classList.remove('dark');
+  //   }
+  // }, [isDark]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -173,7 +173,7 @@ const Index = () => {
   const [contactRef, contactInView] = useSectionInView();
 
   return (
-    <div className={`min-h-screen w-full transition-colors duration-300 ${isDark ? 'dark' : ''}`}>
+    <div className={`min-h-screen w-full transition-colors duration-300`}>
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
