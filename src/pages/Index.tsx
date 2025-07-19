@@ -408,7 +408,7 @@ const Index = () => {
               <span>GitHub</span>
             </a>
             <a
-              href="https://www.linkedin.com/in/omelihunna/"
+              href="https://www.linkedin.com/in/omelihunna-iheanacho-53a8b8248/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 px-10 py-5 bg-black text-white rounded-full border border-white/60 hover:bg-white hover:text-black hover:scale-105 hover:shadow-2xl transition-all duration-300 glass text-lg focus:outline-none focus:ring-2 focus:ring-white"
