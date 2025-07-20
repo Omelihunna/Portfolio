@@ -177,7 +177,7 @@ const Index = () => {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="font-bold text-xl text-black dark:text-white">
+          <div className="font-bold text-xl text-white">
             IHEANACHO OMELIHUNNA
           </div>
           <div className="flex items-center space-x-8">
@@ -203,7 +203,7 @@ const Index = () => {
       {/* Hero Section */}
       <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-transparent text-black dark:text-white relative px-4">
         <div ref={heroRef} className={`max-w-6xl mx-auto px-8 text-center glass glass-dark shadow-xl py-24 animate-fade-in ${heroInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
-          <h1 className="text-6xl font-bold mb-8 animate-scale-in">
+          <h1 className="text-6xl text-white font-bold mb-8 animate-scale-in">
             Full-Stack
             <br />
             <span className="text-gray-400">Developer</span>
