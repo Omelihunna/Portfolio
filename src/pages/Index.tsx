@@ -201,20 +201,20 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-transparent text-black dark:text-white relative px-4">
-        <div ref={heroRef} className={`max-w-6xl mx-auto px-8 text-center glass glass-dark shadow-xl py-24 animate-fade-in ${heroInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
-          <h1 className="text-6xl font-bold mb-8 animate-scale-in">
+      <section id="hero" className="min-h-screen my-auto w-full flex items-center justify-center bg-transparent text-black dark:text-white relative px-4">
+        <div ref={heroRef} className={`max-w-6xl mx-auto px-8 text-center glass glass-dark shadow-xl py-12 md:py-24 animate-fade-in ${heroInView ? 'animate-section-in' : 'opacity-0 translate-y-8'}`}>
+          <h1 className=" text-5xl md:text-6xl font-bold mb-8 animate-scale-in">
             Full-Stack
             <br />
             <span className="text-gray-400">Developer</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg md:text-2xl text-gray-300 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
             Crafting scalable web applications and mobile solutions with modern technologies
           </p>
-          <div className="flex justify-center space-x-6">
+          <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 justify-center md:space-x-6">
             <a
               href="mailto:omelihunna@gmail.com"
-              className="inline-flex items-center space-x-2 px-8 py-4 bg-black text-white rounded-full hover:scale-105 hover:bg-white hover:text-black  hover:shadow-2xl transition-all duration-300 relative group cursor-pointer glass border border-white/10 focus:outline-none focus:ring-2 focus:ring-black"
+              className="inline-flex w-full items-center justify-center space-x-2 px-8 py-4 bg-black text-white rounded-full hover:scale-105 hover:bg-white hover:text-black  hover:shadow-2xl transition-all duration-300 relative group cursor-pointer glass border border-white/10 focus:outline-none focus:ring-2 focus:ring-black"
               data-cursor-light
               style={{ boxShadow: '0 2px 16px 0 rgba(0,0,0,0.18)' }}
             >
@@ -225,9 +225,9 @@ const Index = () => {
               href="https://github.com/Omelihunna"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-8 py-4 bg-black text-white rounded-full border border-black hover:bg-white hover:text-black hover:scale-105 hover:shadow-2xl transition-all duration-300 relative group cursor-pointer glass focus:outline-none focus:ring-2 focus:ring-black"
+              className="inline-flex w-full items-center justify-center space-x-2 px-8 py-4 bg-black text-white rounded-full hover:scale-105 hover:bg-white hover:text-black  hover:shadow-2xl transition-all duration-300 relative group cursor-pointer glass border border-white/10 focus:outline-none focus:ring-2 focus:ring-black"
               data-cursor-light
-              style={{ boxShadow: '0 2px 16px 0 rgba(0,0,0,0.10)' }}
+              style={{ boxShadow: '0 2px 16px 0 rgba(0,0,0,0.18)' }}
             >
               <Github className="w-4 h-4" />
               <span>GitHub</span>
@@ -235,7 +235,7 @@ const Index = () => {
           </div>
         </div>
         {/* Scroll Indicator */}
-        <div className="absolute left-1/2 bottom-15 transform -translate-x-1/2 flex flex-col items-center select-none" aria-hidden="true">
+        <div className="absolute left-1/2 bottom-5 md:bottom-15 transform -translate-x-1/2 flex flex-col items-center select-none" aria-hidden="true">
           <div className="w-10 h-10 flex items-center justify-center animate-bounce">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M16 8V24" stroke="#fff" strokeWidth="3" strokeLinecap="round"/>
